@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "appId": "4921e796-ccf8-427e-a778-947fdce19d0f",
+  "appDisplayName": "M365 セルフヘルプアプリ",
+  "region": "prod",
+  "environmentId": "17423f17-edb6-e0b7-b168-1b149c4b4509",
+  "description": " ",
+  "buildPath": "./dist",
+  "buildEntryPoint": "index.html",
+  "localAppUrl": "http://localhost:3000",
+  "logoPath": "Default",
+  "connectionReferences": {
+    "1051f76c-fc2f-4560-bff4-8e72e929d393": {
+      "id": "/providers/Microsoft.PowerApps/apis/shared_alchemy",
+      "displayName": "Microsoft 365 Self-Help",
+      "dataSources": [
+        "alchemy"
+      ],
+      "dataSets": {}
+    }
+  },
+  "databaseReferences": {}
+}

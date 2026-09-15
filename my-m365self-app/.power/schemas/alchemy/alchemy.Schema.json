@@ -1,0 +1,242 @@
+{
+  "name": "shared_alchemy",
+  "id": "/providers/Microsoft.PowerApps/apis/shared_alchemy",
+  "type": "Microsoft.PowerApps/apis",
+  "properties": {
+    "displayName": "Microsoft 365 Self-Help",
+    "iconUri": "https://static.powerapps.com/resource/ppcr/releases/v1.0.1819/1.0.1819.4795/alchemy/icon.png",
+    "iconBrandColor": "#0089D0",
+    "apiEnvironment": "Shared",
+    "isCustomApi": false,
+    "blobUrisAreProxied": false,
+    "connectionParameters": {
+      "token": {
+        "type": "oauthSetting",
+        "oAuthSettings": {
+          "identityProvider": "aadcertificate",
+          "clientId": "c9fd3e53-51a6-4719-bb90-ee98e2e84d8e",
+          "scopes": [
+            "https://m365.alchemy.microsoft.com/.default"
+          ],
+          "redirectMode": "GlobalPerConnector",
+          "redirectUrl": "https://global.consent.azure-apim.net/redirect/alchemy",
+          "properties": {
+            "IsFirstParty": "True",
+            "AzureActiveDirectoryResourceId": "https://m365.alchemy.microsoft.com",
+            "IsOnbehalfofLoginSupported": true
+          },
+          "customParameters": {
+            "loginUri": {
+              "value": "https://login.microsoftonline.com"
+            },
+            "tenantId": {
+              "value": "common"
+            },
+            "resourceUri": {
+              "value": "https://m365.alchemy.microsoft.com"
+            },
+            "enableOnbehalfOfLogin": {
+              "value": "false"
+            }
+          }
+        }
+      },
+      "token:TenantId": {
+        "type": "string",
+        "metadata": {
+          "sourceType": "AzureActiveDirectoryTenant"
+        },
+        "uiDefinition": {
+          "constraints": {
+            "required": "false",
+            "hidden": "true"
+          }
+        }
+      }
+    },
+    "swagger": {
+      "swagger": "2.0",
+      "info": {
+        "title": "Microsoft 365 Self-Help",
+        "description": "Microsoft 365 Self-Help connector provides services which can provide api's to automate self help for customers.Use the self-help solutions for Microsoft 365 product issues. Reduce your organization’s helpdesk cost and provide great customer experience by adopting the same services that power Microsoft Support.",
+        "version": "1.0",
+        "contact": {
+          "name": "Microsoft",
+          "url": "https://admin.microsoft.com",
+          "email": "PowerConnector-BA@microsoft.com"
+        },
+        "x-ms-api-annotation": {
+          "status": "Preview"
+        }
+      },
+      "host": "17423f17-edb6-e0b7-b168-1b149c4b4509.03.common.usa002.azure-apihub.net",
+      "basePath": "/apim/alchemy",
+      "schemes": [
+        "https"
+      ],
+      "consumes": [],
+      "produces": [],
+      "paths": {
+        "/{connectionId}/api/v1/insights/dcp/esshelp-dcp": {
+          "post": {
+            "responses": {
+              "200": {
+                "description": "Standard response for successful HTTP requests.",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "IsAIInsightsVisible": {
+                      "type": "boolean",
+                      "description": "have ai insights or not from self help api."
+                    },
+                    "IsAdapativeCardVisible": {
+                      "type": "boolean",
+                      "description": "render adaptive card using a flag part of copilt flows."
+                    },
+                    "ClientDiagnostics": {
+                      "type": "object",
+                      "description": "client diag details.",
+                      "properties": {
+                        "IsClientDiagVisible": {
+                          "type": "boolean",
+                          "description": "have visible client diagnostic."
+                        },
+                        "ClientDiagId": {
+                          "type": "integer",
+                          "format": "int32",
+                          "description": "diagnostic Id idenfier for redirection."
+                        },
+                        "ClientDiagTitle": {
+                          "type": "string",
+                          "description": "Title for clientside diagnostic name."
+                        }
+                      }
+                    },
+                    "AimId": {
+                      "type": "string",
+                      "description": "unique request id."
+                    },
+                    "AIInsights": {
+                      "type": "object",
+                      "properties": {
+                        "GPTInsight": {
+                          "type": "string",
+                          "description": "Gpt insight response for givn query."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "summary": "Get self-help insights",
+            "description": "Get self-help insights from Microsoft 365.",
+            "operationId": "GetSelfHelpInsights",
+            "x-ms-visibility": "important",
+            "consumes": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "name": "connectionId",
+                "in": "path",
+                "required": true,
+                "x-ms-visibility": "internal",
+                "type": "string"
+              },
+              {
+                "name": "body",
+                "in": "body",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Text": {
+                      "type": "string",
+                      "description": "Text of the user's query for which we provide self-Help.",
+                      "title": "User Query Text"
+                    }
+                  },
+                  "required": [
+                    "Text"
+                  ],
+                  "x-ms-visibility": "important"
+                },
+                "x-ms-visibility": "important"
+              }
+            ],
+            "externalDocs": {
+              "url": "https://docs.microsoft.com/connectors/alchemy/#get-self-help-insights"
+            }
+          }
+        }
+      },
+      "x-ms-connector-metadata": [
+        {
+          "propertyName": "Website",
+          "propertyValue": "https://microsoft.com"
+        },
+        {
+          "propertyName": "Privacy policy",
+          "propertyValue": "https://www.microsoft.com/privacy/privacystatement"
+        },
+        {
+          "propertyName": "Categories",
+          "propertyValue": "AI"
+        }
+      ],
+      "definitions": {},
+      "parameters": {},
+      "responses": {},
+      "securityDefinitions": {
+        "oauth2_auth": {
+          "type": "oauth2",
+          "flow": "accessCode",
+          "authorizationUrl": "https://login.windows.net/common/oauth2/authorize",
+          "tokenUrl": "https://login.windows.net/common/oauth2/authorize",
+          "scopes": {
+            "https://m365.alchemy.microsoft.com/.default": "https://m365.alchemy.microsoft.com/.default"
+          }
+        }
+      },
+      "security": [
+        {
+          "oauth2_auth": [
+            "https://m365.alchemy.microsoft.com/.default"
+          ]
+        }
+      ],
+      "tags": [],
+      "externalDocs": {
+        "url": "https://docs.microsoft.com/connectors/alchemy"
+      }
+    },
+    "runtimeUrls": [
+      "https://17423f17-edb6-e0b7-b168-1b149c4b4509.03.common.usa002.azure-apihub.net/apim/alchemy"
+    ],
+    "primaryRuntimeUrl": "https://17423f17-edb6-e0b7-b168-1b149c4b4509.03.common.usa002.azure-apihub.net/apim/alchemy",
+    "doNotUseApiHubNetRuntimeUrl": "https://17423f17-edb6-e0b7-b168-1b149c4b4509.03.common.usa002.azure-apihub.net/apim/alchemy",
+    "metadata": {
+      "source": "marketplace",
+      "brandColor": "#0089D0",
+      "stackOwner": "Microsoft",
+      "useNewApimVersion": "true",
+      "version": {
+        "previous": "releases/v1.0.1733\\1.0.1733.4076",
+        "current": "releases/v1.0.1819\\1.0.1819.4795"
+      }
+    },
+    "capabilities": [
+      "actions"
+    ],
+    "interfaces": {},
+    "description": "Microsoft 365 Self-Help connector provides services which can provide api's to automate self help for customers.Use the self-help solutions for Microsoft 365 product issues. Reduce your organization’s helpdesk cost and provide great customer experience by adopting the same services that power Microsoft Support.",
+    "createdTime": "2025-01-29T17:18:10.3804888Z",
+    "changedTime": "2026-07-06T16:40:56.1546999Z",
+    "releaseTag": "Preview",
+    "tier": "Premium",
+    "publisher": "Microsoft",
+    "rateLimit": 0,
+    "apiVersion": "None"
+  }
+}
